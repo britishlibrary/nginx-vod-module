@@ -31,6 +31,7 @@
 #if (NGX_HAVE_LIB_AV_CODEC)
 #include "ngx_http_vod_thumb.h"
 #include "ngx_http_vod_volume_map.h"
+#include "ngx_http_vod_waveform.h"
 #include "vod/filters/audio_decoder.h"
 #include "vod/filters/audio_encoder.h"
 #include "vod/thumb/thumb_grabber.h"
@@ -3441,7 +3442,11 @@ ngx_http_vod_run_state_machine(ngx_http_vod_ctx_t *ctx)
 			{
 				output_codec_id = VOD_CODEC_ID_VOLUME_MAP;
 			}
-			else
+      else if (ctx->submodule_context.conf->submodule.name == waveform.name)
+			{
+				output_codec_id = VOD_CODEC_ID_WAVEFORM;
+			}
+		else
 #endif // NGX_HAVE_LIB_AV_CODEC
 			{
 				output_codec_id = VOD_CODEC_ID_AAC;

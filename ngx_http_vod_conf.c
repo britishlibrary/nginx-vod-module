@@ -1348,6 +1348,7 @@ ngx_command_t ngx_http_vod_commands[] = {
 #if (NGX_HAVE_LIB_AV_CODEC)
 #include "ngx_http_vod_thumb_commands.h"
 #include "ngx_http_vod_volume_map_commands.h"
+#include "ngx_http_vod_waveform_commands.h"
 #endif // NGX_HAVE_LIB_AV_CODEC
 
 	ngx_null_command
