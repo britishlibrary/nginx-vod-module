@@ -13,6 +13,7 @@
 #if (NGX_HAVE_LIB_AV_CODEC)
 #include "ngx_http_vod_thumb_conf.h"
 #include "ngx_http_vod_volume_map_conf.h"
+#include "ngx_http_vod_waveform_conf.h"
 #endif // NGX_HAVE_LIB_AV_CODEC
 
 // enum
@@ -115,6 +116,7 @@ struct ngx_http_vod_loc_conf_s {
 #if (NGX_HAVE_LIB_AV_CODEC)
 	ngx_http_vod_thumb_loc_conf_t thumb;
 	ngx_http_vod_volume_map_loc_conf_t volume_map;
+  ngx_http_vod_waveform_loc_conf_t waveform;
 #endif // NGX_HAVE_LIB_AV_CODEC
 };
 

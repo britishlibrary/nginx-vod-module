@@ -148,9 +148,11 @@ if [ $ngx_found = yes ]; then
     VOD_FEATURE_SRCS="                                      \
         $ngx_addon_dir/ngx_http_vod_thumb.c                 \
         $ngx_addon_dir/ngx_http_vod_volume_map.c            \
+        $ngx_addon_dir/ngx_http_vod_waveform.c              \
         $ngx_addon_dir/vod/filters/audio_decoder.c          \
         $ngx_addon_dir/vod/filters/audio_encoder.c          \
         $ngx_addon_dir/vod/filters/volume_map.c             \
+        $ngx_addon_dir/vod/filters/waveform.c               \
         $ngx_addon_dir/vod/thumb/thumb_grabber.c            \
         "
 
@@ -161,9 +163,13 @@ if [ $ngx_found = yes ]; then
         $ngx_addon_dir/ngx_http_vod_volume_map.h            \
         $ngx_addon_dir/ngx_http_vod_volume_map_commands.h   \
         $ngx_addon_dir/ngx_http_vod_volume_map_conf.h       \
+        $ngx_addon_dir/ngx_http_vod_waveform.h              \
+        $ngx_addon_dir/ngx_http_vod_waveform_commands.h     \
+        $ngx_addon_dir/ngx_http_vod_waveform_conf.h         \
         $ngx_addon_dir/vod/filters/audio_decoder.h          \
         $ngx_addon_dir/vod/filters/audio_encoder.h          \
         $ngx_addon_dir/vod/filters/volume_map.h             \
+        $ngx_addon_dir/vod/filters/waveform.h               \
         $ngx_addon_dir/vod/thumb/thumb_grabber.h            \
         "
 

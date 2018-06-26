@@ -10,6 +10,7 @@
 #include "audio_encoder.h"
 #include "audio_decoder.h"
 #include "volume_map.h"
+#include "waveform.h"
 #include "../input/frames_source_memory.h"
 
 // constants
@@ -73,6 +74,15 @@ static audio_filter_encoder_t volume_map_encoder = {
 	volume_map_encoder_write_frame,
 	NULL,
 	volume_map_encoder_update_media_info,
+};
+
+static audio_filter_encoder_t waveform_encoder = {
+	VOLUME_MAP_INPUT_SAMPLE_FORMAT,
+	NULL,
+	NULL,
+	waveform_encoder_write_frame,
+	NULL,
+	waveform_encoder_update_media_info,
 };
 
 #endif
@@ -676,7 +686,11 @@ audio_filter_alloc_state(
 	{
 		state->sink.encoder = &volume_map_encoder;
 	}
-	else
+  else if (output_codec_id == VOD_CODEC_ID_VOLUME_MAP)
+	{
+		state->sink.encoder = &waveform_encoder;
+	}
+  else
 	{
 		state->sink.encoder = &libav_encoder;
 	}
@@ -750,7 +764,19 @@ audio_filter_alloc_state(
 			goto end;
 		}
 	}
-	else
+  else if (output_codec_id == VOD_CODEC_ID_WAVEFORM)
+	{
+		rc = waveform_encoder_init(
+			request_context,
+			sink_link->time_base.den,
+			&state->sink.frames_array,
+			&state->sink.encoder_context);
+		if (rc != VOD_OK)
+		{
+			goto end;
+		}
+	}
+  else
 	{
 		encoder_params.channel_layout = sink_link->channel_layout;
 		encoder_params.channels = sink_link->channels;
